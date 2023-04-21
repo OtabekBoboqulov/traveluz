@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel uz</title>
-    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
 
 <body>
@@ -20,7 +20,13 @@
                 <li>
                     <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"
                         alt="Log in">
-                    <span>Log in</span>
+                    {% if user.is_authenticated %}
+                    <span><a href="{% url 'logout' %}">Log out | </a></span>
+                    <span><a href="{% url 'change' user.pk %}">&emsp14;Edit profile</a></span>
+                    {% else %}
+                    <span><a href="{% url 'login' %}">Log in</a></span>
+                    <span><a href="{% url 'signup' %}">Sign up</a></span>
+                    {% endif %}
                 </li>
                 <li>Home</li>
                 <li>About</li>
@@ -33,7 +39,7 @@
     <header>
         <div class="header_content">
             <div class="logo">
-                <img src="static/img/project-icon.png" alt="Icon">
+                <img src="{% static 'img/project-icon.png' %}" alt="Icon">
                 <span>Travel Uz</span>
             </div>
             <nav>
@@ -45,7 +51,13 @@
                     <li>
                         <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"
                             alt="Log in">
-                        <span>Log in</span>
+                        {% if user.is_authenticated %}
+                        <span><a href="{% url 'logout' %}">Log out | </a></span>
+                        <span><a href="{% url 'change' user.pk %}">&emsp14;Edit profile</a></span>
+                        {% else %}
+                        <span><a href="{% url 'login' %}">Log in | </a></span>
+                        <span><a href="{% url 'signup' %}">&emsp14;Sign up</a></span>
+                        {% endif %}
                     </li>
                 </ul>
             </nav>
